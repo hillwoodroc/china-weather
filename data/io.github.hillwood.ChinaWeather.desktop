@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=China Weather
+Name[zh_CN]=中国天气
+Name[zh_TW]=中國天氣
+Name[zh_HK]=中國天氣
+Comment=Weather forecasts from weather.com.cn
+Comment[zh_CN]=查看中国天气网的城市天气预报
+Comment[zh_TW]=查看中國天氣網的城市天氣預報
+Comment[zh_HK]=查看中國天氣網的城市天氣預報
+Exec=china-weather
+Icon=io.github.hillwood.ChinaWeather
+Terminal=false
+Categories=GNOME;GTK;Utility;
+Keywords=Weather;Forecast;天气;预报;
+StartupNotify=true

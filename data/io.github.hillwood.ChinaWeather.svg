@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>China Weather</title>
+  <desc>A warm rising sun behind a sculpted white cloud, with three blue raindrops.</desc>
+  <defs>
+    <linearGradient id="sun" x1="0" y1="0" x2="0.3" y2="1">
+      <stop stop-color="#ffcf63"/>
+      <stop offset="1" stop-color="#f57442"/>
+    </linearGradient>
+    <linearGradient id="cloud" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#e3eef8"/>
+    </linearGradient>
+    <linearGradient id="rain" x1="0" y1="0" x2="0.2" y2="1">
+      <stop stop-color="#62c8f4"/>
+      <stop offset="1" stop-color="#2878d4"/>
+    </linearGradient>
+  </defs>
+  <!-- A shallow lower edge gives the sun the weight of a native desktop icon. -->
+  <circle cx="80" cy="43" r="29" fill="#d95b34"/>
+  <circle cx="80" cy="39" r="29" fill="url(#sun)"/>
+  <path d="M62 24a23 23 0 0 1 29-5" fill="none" stroke="#ffe4a0" stroke-width="3" stroke-linecap="round"/>
+  <!-- The silhouette stays readable even at launcher and switcher sizes. -->
+  <path d="M34 90c-13 0-23-9-23-21 0-11 8-20 19-22 4-14 15-23 29-23 17 0 30 12 32 28h2c13 0 24 9 24 20S107 90 94 90Z" fill="#acc6dd"/>
+  <path d="M34 85c-13 0-23-9-23-21 0-11 8-20 19-22 4-14 15-23 29-23 17 0 30 12 32 28h2c13 0 24 9 24 20S107 85 94 85Z" fill="url(#cloud)"/>
+  <path d="M39 42c4-10 11-16 21-16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M32 67c0-8 6-14 14-14 8 0 14 6 14 14" fill="none" stroke="#c5dcec" stroke-width="3" stroke-linecap="round"/>
+  <path d="M60 67c0-5 4-9 9-9s9 4 9 9" fill="none" stroke="#c5dcec" stroke-width="3" stroke-linecap="round"/>
+  <!-- Three clear strokes also suggest a tiny weather trend. -->
+  <path d="m42 97-5 10m28-10-8 17m31-17-5 10" fill="none" stroke="#1e5da8" stroke-width="8" stroke-linecap="round"/>
+  <path d="m42 95-5 10m28-10-8 17m31-17-5 10" fill="none" stroke="url(#rain)" stroke-width="8" stroke-linecap="round"/>
+</svg>

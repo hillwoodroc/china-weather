@@ -1,0 +1,601 @@
+# China Weather translations
+msgid ""
+msgstr ""
+"Project-Id-Version: China Weather\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-05 21:26+0800\n"
+"PO-Revision-Date: 2026-11-05 00:00+0800\n"
+"Last-Translator: China Weather contributors\n"
+"Language-Team: en\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: china_weather/app.py:33 china_weather/app.py:50 china_weather/app.py:200
+#: china_weather/i18n.py:55
+msgid "中国天气"
+msgstr "China Weather"
+
+#: china_weather/app.py:53 china_weather/i18n.py:56
+msgid "刷新天气"
+msgstr "Refresh weather"
+
+#: china_weather/app.py:56 china_weather/i18n.py:57
+msgid "收藏或取消收藏城市"
+msgstr "Add or remove favorite city"
+
+#: china_weather/app.py:59 china_weather/app.py:95 china_weather/i18n.py:58
+msgid "选择地点"
+msgstr "Choose location"
+
+#: china_weather/app.py:63 china_weather/i18n.py:136
+msgid "跟随系统"
+msgstr "System default"
+
+#: china_weather/app.py:66 china_weather/i18n.py:135
+msgid "语言"
+msgstr "Language"
+
+#: china_weather/app.py:75 china_weather/i18n.py:59
+msgid "搜索城市 / 拼音"
+msgstr "Search city / pinyin"
+
+#: china_weather/app.py:79 china_weather/app.py:162 china_weather/i18n.py:60
+msgid "收藏城市"
+msgstr "Favorite cities"
+
+#: china_weather/app.py:94 china_weather/i18n.py:61
+msgid "查看你关心的天气"
+msgstr "Weather where you care"
+
+#: china_weather/app.py:94 china_weather/i18n.py:62
+msgid "选择地点，查看当地天气和预报。"
+msgstr "Choose a location to see local weather and forecasts."
+
+#: china_weather/app.py:143 china_weather/i18n.py:63
+msgid "还没有收藏地点，搜索城市后可点击星标收藏。"
+msgstr ""
+"No favorite locations yet. Search for a city and click the star to save it."
+
+#: china_weather/app.py:165 china_weather/i18n.py:64
+msgid "正在搜索…"
+msgstr "Searching…"
+
+#: china_weather/app.py:170 china_weather/i18n.py:65
+msgid "按城市代码查询"
+msgstr "Search by city code"
+
+#: china_weather/app.py:176 china_weather/i18n.py:66
+msgid "搜索失败："
+msgstr "Search failed: "
+
+#: china_weather/app.py:176 china_weather/i18n.py:67
+msgid "搜索结果"
+msgstr "Search results"
+
+#: china_weather/app.py:176 china_weather/i18n.py:68
+msgid "没有找到城市"
+msgstr "No cities found"
+
+#: china_weather/app.py:211 china_weather/i18n.py:69
+msgid "缓存数据 · 正在更新…"
+msgstr "Cached data · Updating…"
+
+#: china_weather/app.py:213 china_weather/i18n.py:70
+msgid "正在获取天气实况和预报…"
+msgstr "Loading current weather and forecasts…"
+
+#: china_weather/app.py:243 china_weather/i18n.py:71
+msgid "更新失败 · 显示缓存天气，请检查网络后重试"
+msgstr ""
+"Update failed · Showing cached weather. Check your connection and retry."
+
+#: china_weather/app.py:245 china_weather/i18n.py:72
+msgid "暂时无法获取天气"
+msgstr "Weather temporarily unavailable"
+
+#: china_weather/app.py:245 china_weather/i18n.py:73
+msgid "请检查网络后点击刷新。\n"
+msgstr "Check your connection, then refresh.\n"
+
+#: china_weather/app.py:247 china_weather/i18n.py:74
+msgid "部分数据更新失败，请重试"
+msgstr "Some data could not be updated. Please retry."
+
+#: china_weather/app.py:247 china_weather/i18n.py:75
+msgid "已更新"
+msgstr "Updated"
+
+#: china_weather/app.py:261 china_weather/i18n.py:76
+msgid "温度暂缺"
+msgstr "Temperature unavailable"
+
+#: china_weather/app.py:268 china_weather/i18n.py:77
+msgid "湿度 暂缺"
+msgstr "Humidity unavailable"
+
+#: china_weather/app.py:268 china_weather/i18n.py:132
+#, python-brace-format
+msgid "湿度 {value:g}%"
+msgstr "Humidity {value:g}%"
+
+#: china_weather/app.py:270 china_weather/i18n.py:78
+msgid "AQI 暂缺"
+msgstr "AQI unavailable"
+
+#: china_weather/app.py:271 china_weather/i18n.py:79
+msgid "实况观测："
+msgstr "Observed: "
+
+#: china_weather/app.py:271 china_weather/i18n.py:80
+msgid "时间未提供"
+msgstr "Time unavailable"
+
+#: china_weather/app.py:271 china_weather/app.py:318 china_weather/app.py:345
+#: china_weather/i18n.py:81
+msgid " · 北京时间"
+msgstr " · Beijing time (UTC+8)"
+
+#: china_weather/app.py:273 china_weather/i18n.py:82
+msgid "当前实况暂不可用"
+msgstr "Current conditions unavailable"
+
+#: china_weather/app.py:274 china_weather/i18n.py:83
+msgid "请刷新以获取实时天气"
+msgstr "Refresh to load current weather"
+
+#: china_weather/app.py:286 china_weather/i18n.py:84
+msgid "七日预报暂不可用："
+msgstr "7-day forecast unavailable: "
+
+#: china_weather/app.py:286 china_weather/i18n.py:85
+msgid "请刷新"
+msgstr "Please refresh"
+
+#: china_weather/app.py:288 china_weather/i18n.py:133
+#, python-brace-format
+msgid "{status} · 获取时间：{time}（北京时间）"
+msgstr "{status} · Retrieved: {time} (Beijing time, UTC+8)"
+
+#: china_weather/app.py:289 china_weather/i18n.py:86
+msgid "数据来源：中国天气网 ↗"
+msgstr "Source: China Weather ↗"
+
+#: china_weather/app.py:313 china_weather/i18n.py:87
+msgid "七日预报"
+msgstr "7-day forecast"
+
+#: china_weather/app.py:315 china_weather/i18n.py:88
+msgid "分时预报"
+msgstr "Hourly forecast"
+
+#: china_weather/app.py:318 china_weather/i18n.py:89
+msgid "预报发布时间："
+msgstr "Forecast issued: "
+
+#: china_weather/app.py:318 china_weather/i18n.py:90
+msgid "网站未提供"
+msgstr "Not supplied by source"
+
+#: china_weather/app.py:331 china_weather/i18n.py:91
+msgid "分时段预报暂不可用："
+msgstr "Hourly forecast unavailable: "
+
+#: china_weather/app.py:331 china_weather/app.py:343 china_weather/i18n.py:92
+msgid "请刷新以获取数据"
+msgstr "Refresh to load data"
+
+#: china_weather/app.py:333 china_weather/i18n.py:93
+msgid "温度小时实况"
+msgstr "Hourly temperature"
+
+#: china_weather/app.py:334 china_weather/i18n.py:94
+msgid "湿度小时实况"
+msgstr "Hourly humidity"
+
+#: china_weather/app.py:335 china_weather/i18n.py:95
+msgid "降雨量小时实况"
+msgstr "Hourly rainfall"
+
+#: china_weather/app.py:336 china_weather/i18n.py:96
+msgid "风力小时实况"
+msgstr "Hourly wind force"
+
+#: china_weather/app.py:336 china_weather/i18n.py:97
+msgid "级"
+msgstr "Beaufort"
+
+#: china_weather/app.py:338 china_weather/i18n.py:98
+msgid "温度"
+msgstr "Temperature"
+
+#: china_weather/app.py:338 china_weather/i18n.py:99
+msgid "湿度"
+msgstr "Humidity"
+
+#: china_weather/app.py:338 china_weather/i18n.py:100
+msgid "降雨量"
+msgstr "Rainfall"
+
+#: china_weather/app.py:338 china_weather/i18n.py:101
+msgid "风力"
+msgstr "Wind force"
+
+#: china_weather/app.py:343 china_weather/i18n.py:102
+msgid "小时实况暂不可用："
+msgstr "Hourly observations unavailable: "
+
+#: china_weather/app.py:345 china_weather/i18n.py:103
+msgid "最近观测："
+msgstr "Latest observation: "
+
+#: china_weather/app.py:346 china_weather/i18n.py:104
+msgid "（"
+msgstr " ("
+
+#: china_weather/app.py:346 china_weather/i18n.py:105
+msgid "） · 时间从早到晚"
+msgstr ") · Oldest to newest"
+
+#: china_weather/app.py:353 china_weather/i18n.py:106
+msgid "缺测"
+msgstr "Missing"
+
+#: china_weather/app.py:355 china_weather/i18n.py:107
+msgid "风向暂缺"
+msgstr "Wind direction unavailable"
+
+#: china_weather/charts.py:13 china_weather/i18n.py:112
+msgid "时间从左到右排列；具体数值见下方列表。断点表示缺测。"
+msgstr ""
+"Time runs left to right. Exact values are listed below. Gaps indicate "
+"missing observations."
+
+#: china_weather/i18n.py:108 china_weather/widgets.py:21
+msgid "向上滚动"
+msgstr "Scroll up"
+
+#: china_weather/i18n.py:109 china_weather/widgets.py:23
+msgid "向下滚动"
+msgstr "Scroll down"
+
+#: china_weather/i18n.py:110 china_weather/widgets.py:21
+msgid "向左滚动"
+msgstr "Scroll left"
+
+#: china_weather/i18n.py:111 china_weather/widgets.py:23
+msgid "向右滚动"
+msgstr "Scroll right"
+
+#: china_weather/i18n.py:113
+msgid "未找到七日预报，网站结构可能已更新"
+msgstr "7-day forecast not found; the source website may have changed"
+
+#: china_weather/i18n.py:114
+msgid "天气页面没有可用预报"
+msgstr "No forecast available on the weather page"
+
+#: china_weather/i18n.py:115
+msgid "城市搜索返回格式已变化"
+msgstr "City search response format has changed"
+
+#: china_weather/i18n.py:116
+msgid "搜索服务返回了记录，但未能识别国内城市数据"
+msgstr "Search returned records, but no supported city data was recognized"
+
+#: china_weather/i18n.py:117
+msgid "无效的城市代码"
+msgstr "Invalid city code"
+
+#: china_weather/i18n.py:118
+msgid "页面没有可用的分时段预报"
+msgstr "No hourly forecast available on the page"
+
+#: china_weather/i18n.py:119
+msgid "页面没有可用的小时实况"
+msgstr "No hourly observations available on the page"
+
+#: china_weather/i18n.py:120
+msgid "未找到当前天气实况"
+msgstr "Current observations not found"
+
+#: china_weather/i18n.py:121
+msgid "当前天气实况格式已变化"
+msgstr "Current observation format has changed"
+
+#: china_weather/i18n.py:122
+msgid "实况返回的城市代码不匹配"
+msgstr "Observation city code does not match"
+
+#: china_weather/i18n.py:123
+msgid "天气现象暂缺"
+msgstr "Conditions unavailable"
+
+#: china_weather/i18n.py:124
+msgid "风力暂缺"
+msgstr "Wind force unavailable"
+
+#: china_weather/i18n.py:125
+msgid "暂无数据"
+msgstr "No data"
+
+#: china_weather/i18n.py:126
+msgid "优"
+msgstr "Good"
+
+#: china_weather/i18n.py:127
+msgid "良"
+msgstr "Moderate"
+
+#: china_weather/i18n.py:128
+msgid "轻度污染"
+msgstr "Unhealthy for sensitive groups"
+
+#: china_weather/i18n.py:129
+msgid "中度污染"
+msgstr "Unhealthy"
+
+#: china_weather/i18n.py:130
+msgid "重度污染"
+msgstr "Very unhealthy"
+
+#: china_weather/i18n.py:131
+msgid "严重污染"
+msgstr "Hazardous"
+
+#: china_weather/i18n.py:134
+#, python-brace-format
+msgid "页面没有提供 {name} 数据"
+msgstr "The page does not provide {name} data"
+
+#: china_weather/i18n.py:140
+msgctxt "weather"
+msgid "晴"
+msgstr "Clear"
+
+#: china_weather/i18n.py:141
+msgctxt "weather"
+msgid "多云"
+msgstr "Cloudy"
+
+#: china_weather/i18n.py:142
+msgctxt "weather"
+msgid "阴"
+msgstr "Overcast"
+
+#: china_weather/i18n.py:143
+msgctxt "weather"
+msgid "雷阵雨"
+msgstr "Thundershowers"
+
+#: china_weather/i18n.py:144
+msgctxt "weather"
+msgid "阵雨"
+msgstr "Showers"
+
+#: china_weather/i18n.py:145
+msgctxt "weather"
+msgid "雨夹雪"
+msgstr "Sleet"
+
+#: china_weather/i18n.py:146
+msgctxt "weather"
+msgid "雷阵雨伴有冰雹"
+msgstr "Thundershowers with hail"
+
+#: china_weather/i18n.py:147
+msgctxt "weather"
+msgid "特大暴雨"
+msgstr "Extreme rainstorm"
+
+#: china_weather/i18n.py:148
+msgctxt "weather"
+msgid "大暴雨"
+msgstr "Severe rainstorm"
+
+#: china_weather/i18n.py:149
+msgctxt "weather"
+msgid "暴雨"
+msgstr "Rainstorm"
+
+#: china_weather/i18n.py:150
+msgctxt "weather"
+msgid "大雨"
+msgstr "Heavy rain"
+
+#: china_weather/i18n.py:151
+msgctxt "weather"
+msgid "中雨"
+msgstr "Moderate rain"
+
+#: china_weather/i18n.py:152
+msgctxt "weather"
+msgid "小雨"
+msgstr "Light rain"
+
+#: china_weather/i18n.py:153
+msgctxt "weather"
+msgid "暴雪"
+msgstr "Blizzard"
+
+#: china_weather/i18n.py:154
+msgctxt "weather"
+msgid "大雪"
+msgstr "Heavy snow"
+
+#: china_weather/i18n.py:155
+msgctxt "weather"
+msgid "中雪"
+msgstr "Moderate snow"
+
+#: china_weather/i18n.py:156
+msgctxt "weather"
+msgid "小雪"
+msgstr "Light snow"
+
+#: china_weather/i18n.py:157
+msgctxt "weather"
+msgid "阵雪"
+msgstr "Snow showers"
+
+#: china_weather/i18n.py:158
+msgctxt "weather"
+msgid "浮尘"
+msgstr "Dust"
+
+#: china_weather/i18n.py:159
+msgctxt "weather"
+msgid "扬沙"
+msgstr "Blowing sand"
+
+#: china_weather/i18n.py:160
+msgctxt "weather"
+msgid "强沙尘暴"
+msgstr "Severe sandstorm"
+
+#: china_weather/i18n.py:161
+msgctxt "weather"
+msgid "沙尘暴"
+msgstr "Sandstorm"
+
+#: china_weather/i18n.py:162
+msgctxt "weather"
+msgid "雾"
+msgstr "Fog"
+
+#: china_weather/i18n.py:163
+msgctxt "weather"
+msgid "霾"
+msgstr "Haze"
+
+#: china_weather/i18n.py:164
+msgctxt "weather"
+msgid "东北风"
+msgstr "NE wind"
+
+#: china_weather/i18n.py:165
+msgctxt "weather"
+msgid "东南风"
+msgstr "SE wind"
+
+#: china_weather/i18n.py:166
+msgctxt "weather"
+msgid "西北风"
+msgstr "NW wind"
+
+#: china_weather/i18n.py:167
+msgctxt "weather"
+msgid "西南风"
+msgstr "SW wind"
+
+#: china_weather/i18n.py:168
+msgctxt "weather"
+msgid "东风"
+msgstr "E wind"
+
+#: china_weather/i18n.py:169
+msgctxt "weather"
+msgid "南风"
+msgstr "S wind"
+
+#: china_weather/i18n.py:170
+msgctxt "weather"
+msgid "西风"
+msgstr "W wind"
+
+#: china_weather/i18n.py:171
+msgctxt "weather"
+msgid "北风"
+msgstr "N wind"
+
+#: china_weather/i18n.py:172
+msgctxt "weather"
+msgid "无持续风向"
+msgstr "Variable wind"
+
+#: china_weather/i18n.py:173
+msgctxt "weather"
+msgid "微风"
+msgstr "Light breeze"
+
+#: china_weather/i18n.py:174
+msgctxt "weather"
+msgid "今天"
+msgstr "Today"
+
+#: china_weather/i18n.py:175
+msgctxt "weather"
+msgid "明天"
+msgstr "Tomorrow"
+
+#: china_weather/i18n.py:176
+msgctxt "weather"
+msgid "后天"
+msgstr "Day after tomorrow"
+
+#: china_weather/i18n.py:177
+msgctxt "weather"
+msgid "星期"
+msgstr "Week "
+
+#: china_weather/i18n.py:178
+msgctxt "weather"
+msgid "周一"
+msgstr "Mon"
+
+#: china_weather/i18n.py:179
+msgctxt "weather"
+msgid "周二"
+msgstr "Tue"
+
+#: china_weather/i18n.py:180
+msgctxt "weather"
+msgid "周三"
+msgstr "Wed"
+
+#: china_weather/i18n.py:181
+msgctxt "weather"
+msgid "周四"
+msgstr "Thu"
+
+#: china_weather/i18n.py:182
+msgctxt "weather"
+msgid "周五"
+msgstr "Fri"
+
+#: china_weather/i18n.py:183
+msgctxt "weather"
+msgid "周六"
+msgstr "Sat"
+
+#: china_weather/i18n.py:184
+msgctxt "weather"
+msgid "周日"
+msgstr "Sun"
+
+#: china_weather/i18n.py:185
+msgctxt "weather"
+msgid "转"
+msgstr " → "
+
+#: china_weather/i18n.py:186
+msgctxt "weather"
+msgid "到"
+msgstr " to "
+
+#: china_weather/i18n.py:187
+msgctxt "weather"
+msgid "级"
+msgstr " Bft"
+
+#: china_weather/i18n.py:188
+msgctxt "weather"
+msgid "日"
+msgstr " day"
+
+#: china_weather/i18n.py:189
+msgctxt "weather"
+msgid "小于"
+msgstr "less than "

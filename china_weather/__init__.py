@@ -1,0 +1,1 @@
+"""Native GNOME weather application."""
