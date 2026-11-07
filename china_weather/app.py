@@ -57,8 +57,13 @@ class Window(Adw.ApplicationWindow):
         self.star = Gtk.Button(icon_name='non-starred-symbolic', tooltip_text=_('收藏或取消收藏城市'))
         self.star.connect('clicked', self.toggle_favorite)
         header.pack_end(self.star)
-        self.locations = Gtk.MenuButton(icon_name='find-location-symbolic', tooltip_text=_('选择地点'))
-        header.pack_start(self.locations)
+        self.locations = Gtk.MenuButton(tooltip_text=_('选择地点'), halign=Gtk.Align.START)
+        self.locations.add_css_class('flat')
+        location_title = Gtk.Box(spacing=6)
+        self.city_label = label(_('选择地点'), 'heading')
+        location_title.append(self.city_label)
+        location_title.append(Gtk.Image.new_from_icon_name('pan-down-symbolic'))
+        self.locations.set_child(location_title)
         language_menu = Gio.Menu()
         for code, name in LANGUAGES.items():
             language_menu.append(_('跟随系统') if code == 'system' else name,
@@ -86,12 +91,21 @@ class Window(Adw.ApplicationWindow):
         for side in ('top', 'bottom', 'start', 'end'):
             getattr(self.body, 'set_margin_' + side)(20)
         clamp = Adw.Clamp(maximum_size=1200)
-        clamp.set_child(self.body)
+        weather_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.locations.set_margin_start(20)
+        self.locations.set_margin_top(12)
+        weather_content.append(self.locations)
+        weather_content.append(self.body)
+        clamp.set_child(weather_content)
         self.content.append(ArrowScroller(clamp, vertical=True, vexpand=True))
         self.show_cities(self.cities)
+        settings = storage.load(storage.SETTINGS, {})
+        last_city = settings.get('selected_city') if isinstance(settings, dict) else None
+        initial_city = next((c for c in self.cities if c.code == last_city), None)
         if selected_city or self.cities:
-            self.select(selected_city or self.cities[0])
+            self.select(selected_city or initial_city or self.cities[0])
         else:
+            self.update_location_selector()
             self.empty(_('查看你关心的天气'), _('选择地点，查看当地天气和预报。'))
             choose = Gtk.Button(label=_('选择地点'), halign=Gtk.Align.CENTER)
             choose.add_css_class('suggested-action')
@@ -146,13 +160,38 @@ class Window(Adw.ApplicationWindow):
             button = Gtk.Button()
             button.add_css_class('flat')
             box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
-            box.append(label(city.name, 'heading'))
-            box.append(label(city.region or city.code, 'dim-label'))
-            button.set_child(box)
-            button.connect('clicked', lambda _, c=city: self.select(c))
+            name = label(city.name, 'heading')
+            name.set_xalign(0)
+            box.append(name)
+            region = label(city.region or city.code, 'dim-label')
+            region.set_xalign(0)
+            box.append(region)
+            row = Gtk.Box(spacing=12)
+            box.set_hexpand(True)
+            row.append(box)
+            selected = Gtk.Image.new_from_icon_name('object-select-symbolic')
+            selected.set_visible(bool(self.city and city.code == self.city.code))
+            row.append(selected)
+            button.set_child(row)
+            button.connect('clicked', lambda _, c=city: self.add_city(c))
             self.results.append(button)
 
-    def search_changed(self, *_):
+    def add_city(self, city):
+        # City codes identify locations even when search returns a different label.
+        city = next((c for c in self.cities if c.code == city.code), city)
+        if city not in self.cities:
+            self.cities.append(city)
+            storage.save(storage.CONFIG, [asdict(c) for c in self.cities])
+        self.select(city)
+
+    def update_location_selector(self):
+        self.city_label.set_text(self.city.name if self.city else _('选择地点'))
+        self.locations.set_tooltip_text(
+            self.city.region or self.city.code if self.city else _('选择地点'))
+        if not self.search.get_text().strip():
+            self.show_cities(self.cities)
+
+    def search_changed(self, *args):
         self.search_serial += 1
         generation = self.search_serial
         if self.search_timer:
@@ -189,6 +228,7 @@ class Window(Adw.ApplicationWindow):
             self.cities.append(self.city)
         storage.save(storage.CONFIG, [asdict(c) for c in self.cities])
         self.update_star()
+        self.update_location_selector()
         if not self.search.get_text():
             self.show_cities(self.cities)
 
@@ -200,6 +240,12 @@ class Window(Adw.ApplicationWindow):
         self.window_title.set_title(city.name)
         self.window_title.set_subtitle(_('中国天气'))
         self.city = city
+        settings = storage.load(storage.SETTINGS, {})
+        if not isinstance(settings, dict):
+            settings = {}
+        settings['selected_city'] = city.code
+        storage.save(storage.SETTINGS, settings)
+        self.update_location_selector()
         self.serial += 1
         generation = self.serial
         self.update_star()
@@ -250,7 +296,6 @@ class Window(Adw.ApplicationWindow):
 
     def render(self, data, status):
         clear(self.body)
-        self.body.append(label(data['city']['name'], 'title-1'))
         current = data.get('current')
         if current:
             overview = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20, halign=Gtk.Align.CENTER)
@@ -380,7 +425,11 @@ class Application(Adw.Application):
         language = value.get_string()
         if language not in LANGUAGES or language == self.language:
             return
-        storage.save(storage.SETTINGS, {'language': language})
+        settings = storage.load(storage.SETTINGS, {})
+        if not isinstance(settings, dict):
+            settings = {}
+        settings['language'] = language
+        storage.save(storage.SETTINGS, settings)
         self.language = language
         action.set_state(value)
         set_language(language)
