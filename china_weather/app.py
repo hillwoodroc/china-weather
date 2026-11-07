@@ -57,7 +57,7 @@ class Window(Adw.ApplicationWindow):
         self.star = Gtk.Button(icon_name='non-starred-symbolic', tooltip_text=_('收藏或取消收藏城市'))
         self.star.connect('clicked', self.toggle_favorite)
         header.pack_end(self.star)
-        self.locations = Gtk.MenuButton(tooltip_text=_('选择地点'), halign=Gtk.Align.START)
+        self.locations = Gtk.MenuButton(tooltip_text=_('选择地点'), halign=Gtk.Align.CENTER)
         self.locations.add_css_class('flat')
         location_title = Gtk.Box(spacing=6)
         self.city_label = label(_('选择地点'), 'heading')
@@ -89,15 +89,12 @@ class Window(Adw.ApplicationWindow):
         location_box.append(location_scroll)
         self.body = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16)
         for side in ('top', 'bottom', 'start', 'end'):
-            getattr(self.body, 'set_margin_' + side)(20)
-        clamp = Adw.Clamp(maximum_size=1200)
+            getattr(self.body, 'set_margin_' + side)(8 if side in ('start', 'end') else 20)
         weather_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.locations.set_margin_start(20)
         self.locations.set_margin_top(12)
         weather_content.append(self.locations)
         weather_content.append(self.body)
-        clamp.set_child(weather_content)
-        self.content.append(ArrowScroller(clamp, vertical=True, vexpand=True))
+        self.content.append(ArrowScroller(weather_content, vertical=True, vexpand=True))
         self.show_cities(self.cities)
         settings = storage.load(storage.SETTINGS, {})
         last_city = settings.get('selected_city') if isinstance(settings, dict) else None
@@ -343,8 +340,9 @@ class Window(Adw.ApplicationWindow):
 
     @staticmethod
     def card_strip(cards):
-        cards.set_margin_start(44)
-        cards.set_margin_end(44)
+        # The viewport fills the window; shorter rows sit in its center.
+        # Rows wider than the viewport retain their full scrollable width.
+        cards.set_halign(Gtk.Align.CENTER)
         return ArrowScroller(cards)
 
     def add_weather_tabs(self, data, daily):
