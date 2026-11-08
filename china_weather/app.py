@@ -9,7 +9,7 @@ import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Adw, Gtk, Gio, GLib, Gdk
-from . import provider, storage
+from . import __version__, provider, storage
 from .i18n import translate as _, weather_text, error_text, set_language, LANGUAGES
 from .charts import TrendChart
 from .widgets import ArrowScroller
@@ -469,7 +469,7 @@ class Application(Adw.Application):
             application_name=_('中国天气'),
             application_icon='io.github.hillwood.ChinaWeather',
             developer_name='Hillwood Yang', developers=['Hillwood Yang'],
-            version=_('开发版'),
+            version=__version__,
             website='https://github.com/hillwoodroc/china-weather',
             issue_url='https://github.com/hillwoodroc/china-weather/issues',
             license_type=Gtk.License.GPL_3_0)
@@ -484,7 +484,7 @@ class Application(Adw.Application):
         dialog = Gtk.AboutDialog(
             transient_for=parent, modal=True, program_name=_('中国天气'),
             logo_icon_name='io.github.hillwood.ChinaWeather',
-            authors=['Hillwood Yang'], version=_('开发版'),
+            authors=['Hillwood Yang'], version=__version__,
             comments=_('查看中国城市的实时天气与预报。'),
             website='https://github.com/hillwoodroc/china-weather',
             website_label=_('网站'),
