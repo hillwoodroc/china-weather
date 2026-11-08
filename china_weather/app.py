@@ -13,6 +13,7 @@ from . import provider, storage
 from .i18n import translate as _, weather_text, error_text, set_language, LANGUAGES
 from .charts import TrendChart
 from .widgets import ArrowScroller
+from .temperature import convert_temperature, format_temperature
 
 POOL = ThreadPoolExecutor(max_workers=4)
 
@@ -33,6 +34,7 @@ class Window(Adw.ApplicationWindow):
     def __init__(self, app, selected_city=None):
         super().__init__(application=app, title=_('中国天气'), default_width=940, default_height=720)
         self.city = None
+        self.rendered_weather = None
         self.serial = self.search_serial = 0
         self.search_timer = None
         self.cities = []
@@ -68,9 +70,18 @@ class Window(Adw.ApplicationWindow):
         for code, name in LANGUAGES.items():
             language_menu.append(_('跟随系统') if code == 'system' else name,
                                  'app.language::' + code)
-        self.language_button = Gtk.MenuButton(icon_name='preferences-desktop-locale-symbolic',
-                                              tooltip_text=_('语言'), menu_model=language_menu)
-        header.pack_end(self.language_button)
+        menu = Gio.Menu()
+        menu.append_submenu(_('语言'), language_menu)
+        units = Gio.Menu()
+        units.append(_('摄氏度 (°C)'), 'app.temperature-unit::celsius')
+        units.append(_('华氏度 (°F)'), 'app.temperature-unit::fahrenheit')
+        menu.append_submenu(_('温度单位'), units)
+        about = Gio.Menu()
+        about.append(_('关于中国天气'), 'app.about')
+        menu.append_section(None, about)
+        self.menu_button = Gtk.MenuButton(icon_name='open-menu-symbolic',
+                                           tooltip_text=_('主菜单'), menu_model=menu)
+        header.pack_end(self.menu_button)
         self.location_popover = Gtk.Popover()
         self.locations.set_popover(self.location_popover)
         location_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12,
@@ -292,6 +303,7 @@ class Window(Adw.ApplicationWindow):
         self.async_call(work, done)
 
     def render(self, data, status):
+        self.rendered_weather = (data, status)
         clear(self.body)
         current = data.get('current')
         if current:
@@ -301,7 +313,7 @@ class Window(Adw.ApplicationWindow):
             overview.append(image)
             summary = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
             temperature = current.get('temperature')
-            summary.append(label(_('温度暂缺') if temperature is None else f'{temperature:g}°', 'temperature'))
+            summary.append(label(_('温度暂缺') if temperature is None else format_temperature(temperature, self.get_application().temperature_unit), 'temperature'))
             summary.append(label(weather_text(current['condition']), 'title-2'))
             overview.append(summary)
             self.body.append(overview)
@@ -322,8 +334,8 @@ class Window(Adw.ApplicationWindow):
             image.set_pixel_size(48)
             card.append(image)
             card.append(label(weather_text(day['condition'])))
-            card.append(label(f"{(day['high'] or '—').replace('℃', '')}°", 'title-1'))
-            card.append(label(f"{(day['low'] or '—').replace('℃', '')}°", 'dim-label'))
+            card.append(label(format_temperature(day['high'], self.get_application().temperature_unit), 'title-1'))
+            card.append(label(format_temperature(day['low'], self.get_application().temperature_unit), 'dim-label'))
             card.append(label(weather_text(day['wind']), 'dim-label'))
             cards.append(card)
         daily = self.card_strip(cards) if data.get('days') else label(_('七日预报暂不可用：') + error_text(data.get('days_error', _('请刷新'))))
@@ -367,7 +379,7 @@ class Window(Adw.ApplicationWindow):
                 image.set_pixel_size(48)
                 card.append(image)
                 card.append(label(weather_text(point['condition'])))
-                card.append(label(point['temperature'], 'title-1'))
+                card.append(label(format_temperature(point['temperature'], self.get_application().temperature_unit), 'title-1'))
                 card.append(label(weather_text(point['direction'] + ' ' + point['wind']), 'dim-label'))
                 cards.append(card)
             hourly.append(self.card_strip(cards))
@@ -383,6 +395,10 @@ class Window(Adw.ApplicationWindow):
             stack.add_titled(page, field, tab_title)
             page.set_tooltip_text(title)
             points = observations.get('rows', [])
+            if field == 'temperature':
+                unit = '°F' if self.get_application().temperature_unit == 'fahrenheit' else '°C'
+                points = [dict(point, temperature=convert_temperature(
+                    point.get('temperature'), self.get_application().temperature_unit)) for point in points]
             if not points:
                 page.append(label(_('小时实况暂不可用：') + error_text(data.get('observations_error', _('请刷新以获取数据'))), 'dim-label'))
                 continue
@@ -410,6 +426,9 @@ class Application(Adw.Application):
         self.language = settings.get('language', 'system') if isinstance(settings, dict) else 'system'
         if self.language not in LANGUAGES:
             self.language = 'system'
+        self.temperature_unit = settings.get('temperature_unit', 'celsius') if isinstance(settings, dict) else 'celsius'
+        if self.temperature_unit not in ('celsius', 'fahrenheit'):
+            self.temperature_unit = 'celsius'
         set_language(self.language)
         super().__init__(application_id='io.github.hillwood.ChinaWeather', flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
         Gtk.Window.set_default_icon_name('io.github.hillwood.ChinaWeather')
@@ -418,6 +437,59 @@ class Application(Adw.Application):
                                               GLib.Variant('s', self.language))
         action.connect('change-state', self.change_language)
         self.add_action(action)
+
+        unit_action = Gio.SimpleAction.new_stateful('temperature-unit', GLib.VariantType.new('s'),
+                                                   GLib.Variant('s', self.temperature_unit))
+        unit_action.connect('change-state', self.change_temperature_unit)
+        self.add_action(unit_action)
+        about_action = Gio.SimpleAction.new('about', None)
+        about_action.connect('activate', self.show_about)
+        self.add_action(about_action)
+
+    def change_temperature_unit(self, action, value):
+        unit = value.get_string()
+        if unit not in ('celsius', 'fahrenheit') or unit == self.temperature_unit:
+            return
+        settings = storage.load(storage.SETTINGS, {})
+        if not isinstance(settings, dict):
+            settings = {}
+        settings['temperature_unit'] = unit
+        storage.save(storage.SETTINGS, settings)
+        self.temperature_unit = unit
+        action.set_state(value)
+        for window in self.get_windows():
+            if isinstance(window, Window) and window.rendered_weather:
+                window.render(*window.rendered_weather)
+
+    def show_about(self, *args):
+        parent = next((window for window in self.get_windows() if isinstance(window, Window)), None)
+        # Comments create a Details page and move the website into it.
+        # Keep the native website row on the main page, like GNOME Weather.
+        properties = dict(
+            application_name=_('中国天气'),
+            application_icon='io.github.hillwood.ChinaWeather',
+            developer_name='Hillwood Yang', developers=['Hillwood Yang'],
+            version=_('开发版'),
+            website='https://github.com/hillwoodroc/china-weather',
+            issue_url='https://github.com/hillwoodroc/china-weather/issues',
+            license_type=Gtk.License.GPL_3_0)
+        if hasattr(Adw, 'AboutDialog'):
+            dialog = Adw.AboutDialog(**properties)
+            dialog.present(parent)
+            return
+        if hasattr(Adw, 'AboutWindow'):
+            dialog = Adw.AboutWindow(transient_for=parent, modal=True, **properties)
+            dialog.present()
+            return
+        dialog = Gtk.AboutDialog(
+            transient_for=parent, modal=True, program_name=_('中国天气'),
+            logo_icon_name='io.github.hillwood.ChinaWeather',
+            authors=['Hillwood Yang'], version=_('开发版'),
+            comments=_('查看中国城市的实时天气与预报。'),
+            website='https://github.com/hillwoodroc/china-weather',
+            website_label=_('网站'),
+            license_type=Gtk.License.GPL_3_0)
+        dialog.present()
 
     def change_language(self, action, value):
         language = value.get_string()

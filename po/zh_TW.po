@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: China Weather\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 21:26+0800\n"
+"POT-Creation-Date: 2026-11-08 16:34+0800\n"
 "PO-Revision-Date: 2026-11-05 00:00+0800\n"
 "Last-Translator: China Weather contributors\n"
 "Language-Team: zh_TW\n"
@@ -13,585 +13,622 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: china_weather/app.py:33 china_weather/app.py:50 china_weather/app.py:200
-#: china_weather/i18n.py:55
+#: china_weather/app.py:35 china_weather/app.py:53 china_weather/app.py:249
+#: china_weather/app.py:468 china_weather/app.py:478 china_weather/i18n.py:65
 msgid "中国天气"
 msgstr "中國天氣"
 
-#: china_weather/app.py:53 china_weather/i18n.py:56
+#: china_weather/app.py:56 china_weather/i18n.py:66
 msgid "刷新天气"
 msgstr "重新整理天氣"
 
-#: china_weather/app.py:56 china_weather/i18n.py:57
+#: china_weather/app.py:59 china_weather/i18n.py:67
 msgid "收藏或取消收藏城市"
 msgstr "收藏或取消收藏城市"
 
-#: china_weather/app.py:59 china_weather/app.py:95 china_weather/i18n.py:58
+#: china_weather/app.py:62 china_weather/app.py:65 china_weather/app.py:118
+#: china_weather/app.py:196 china_weather/app.py:198 china_weather/i18n.py:68
 msgid "选择地点"
 msgstr "選擇地點"
 
-#: china_weather/app.py:63 china_weather/i18n.py:136
+#: china_weather/app.py:71 china_weather/i18n.py:146
 msgid "跟随系统"
 msgstr "跟隨系統"
 
-#: china_weather/app.py:66 china_weather/i18n.py:135
+#: china_weather/app.py:74 china_weather/i18n.py:145
 msgid "语言"
 msgstr "語言"
 
-#: china_weather/app.py:75 china_weather/i18n.py:59
+#: china_weather/app.py:76 china_weather/i18n.py:59
+msgid "摄氏度 (°C)"
+msgstr "攝氏度 (°C)"
+
+#: china_weather/app.py:77 china_weather/i18n.py:60
+msgid "华氏度 (°F)"
+msgstr "華氏度 (°F)"
+
+#: china_weather/app.py:78 china_weather/i18n.py:58
+msgid "温度单位"
+msgstr "溫度單位"
+
+#: china_weather/app.py:80 china_weather/i18n.py:61
+msgid "关于中国天气"
+msgstr "關於中國天氣"
+
+#: china_weather/app.py:83 china_weather/i18n.py:57
+msgid "主菜单"
+msgstr "主選單"
+
+#: china_weather/app.py:92 china_weather/i18n.py:69
 msgid "搜索城市 / 拼音"
 msgstr "搜尋城市 / 拼音"
 
-#: china_weather/app.py:79 china_weather/app.py:162 china_weather/i18n.py:60
+#: china_weather/app.py:96 china_weather/app.py:210 china_weather/i18n.py:70
 msgid "收藏城市"
 msgstr "收藏城市"
 
-#: china_weather/app.py:94 china_weather/i18n.py:61
+#: china_weather/app.py:117 china_weather/i18n.py:71
 msgid "查看你关心的天气"
 msgstr "查看你關心的天氣"
 
-#: china_weather/app.py:94 china_weather/i18n.py:62
+#: china_weather/app.py:117 china_weather/i18n.py:72
 msgid "选择地点，查看当地天气和预报。"
 msgstr "選擇地點，查看當地天氣和預報。"
 
-#: china_weather/app.py:143 china_weather/i18n.py:63
+#: china_weather/app.py:166 china_weather/i18n.py:73
 msgid "还没有收藏地点，搜索城市后可点击星标收藏。"
 msgstr "還沒有收藏地點，搜尋城市後可點擊星號收藏。"
 
-#: china_weather/app.py:165 china_weather/i18n.py:64
+#: china_weather/app.py:213 china_weather/i18n.py:74
 msgid "正在搜索…"
 msgstr "正在搜尋…"
 
-#: china_weather/app.py:170 china_weather/i18n.py:65
+#: china_weather/app.py:218 china_weather/i18n.py:75
 msgid "按城市代码查询"
 msgstr "按城市代碼查詢"
 
-#: china_weather/app.py:176 china_weather/i18n.py:66
+#: china_weather/app.py:224 china_weather/i18n.py:76
 msgid "搜索失败："
 msgstr "搜尋失敗："
 
-#: china_weather/app.py:176 china_weather/i18n.py:67
+#: china_weather/app.py:224 china_weather/i18n.py:77
 msgid "搜索结果"
 msgstr "搜尋結果"
 
-#: china_weather/app.py:176 china_weather/i18n.py:68
+#: china_weather/app.py:224 china_weather/i18n.py:78
 msgid "没有找到城市"
 msgstr "沒有找到城市"
 
-#: china_weather/app.py:211 china_weather/i18n.py:69
+#: china_weather/app.py:266 china_weather/i18n.py:79
 msgid "缓存数据 · 正在更新…"
 msgstr "快取資料 · 正在更新…"
 
-#: china_weather/app.py:213 china_weather/i18n.py:70
+#: china_weather/app.py:268 china_weather/i18n.py:80
 msgid "正在获取天气实况和预报…"
 msgstr "正在取得天氣實況和預報…"
 
-#: china_weather/app.py:243 china_weather/i18n.py:71
+#: china_weather/app.py:298 china_weather/i18n.py:81
 msgid "更新失败 · 显示缓存天气，请检查网络后重试"
 msgstr "更新失敗 · 顯示快取天氣，請檢查網路後重試"
 
-#: china_weather/app.py:245 china_weather/i18n.py:72
+#: china_weather/app.py:300 china_weather/i18n.py:82
 msgid "暂时无法获取天气"
 msgstr "暫時無法取得天氣"
 
-#: china_weather/app.py:245 china_weather/i18n.py:73
+#: china_weather/app.py:300 china_weather/i18n.py:83
 msgid "请检查网络后点击刷新。\n"
 msgstr "請檢查網路後點擊重新整理。\n"
 
-#: china_weather/app.py:247 china_weather/i18n.py:74
+#: china_weather/app.py:302 china_weather/i18n.py:84
 msgid "部分数据更新失败，请重试"
 msgstr "部分資料更新失敗，請重試"
 
-#: china_weather/app.py:247 china_weather/i18n.py:75
+#: china_weather/app.py:302 china_weather/i18n.py:85
 msgid "已更新"
 msgstr "已更新"
 
-#: china_weather/app.py:261 china_weather/i18n.py:76
+#: china_weather/app.py:316 china_weather/i18n.py:86
 msgid "温度暂缺"
 msgstr "溫度暫缺"
 
-#: china_weather/app.py:268 china_weather/i18n.py:77
+#: china_weather/app.py:323 china_weather/i18n.py:87
 msgid "湿度 暂缺"
 msgstr "濕度暫缺"
 
-#: china_weather/app.py:268 china_weather/i18n.py:132
+#: china_weather/app.py:323 china_weather/i18n.py:142
 #, python-brace-format
 msgid "湿度 {value:g}%"
 msgstr "濕度 {value:g}%"
 
-#: china_weather/app.py:270 china_weather/i18n.py:78
+#: china_weather/app.py:325 china_weather/i18n.py:88
 msgid "AQI 暂缺"
 msgstr "AQI 暫缺"
 
-#: china_weather/app.py:271 china_weather/i18n.py:79
+#: china_weather/app.py:326 china_weather/i18n.py:89
 msgid "实况观测："
 msgstr "實況觀測："
 
-#: china_weather/app.py:271 china_weather/i18n.py:80
+#: china_weather/app.py:326 china_weather/i18n.py:90
 msgid "时间未提供"
 msgstr "時間未提供"
 
-#: china_weather/app.py:271 china_weather/app.py:318 china_weather/app.py:345
-#: china_weather/i18n.py:81
+#: china_weather/app.py:326 china_weather/app.py:374 china_weather/app.py:405
+#: china_weather/i18n.py:91
 msgid " · 北京时间"
 msgstr " · 北京時間"
 
-#: china_weather/app.py:273 china_weather/i18n.py:82
+#: china_weather/app.py:328 china_weather/i18n.py:92
 msgid "当前实况暂不可用"
 msgstr "目前實況暫不可用"
 
-#: china_weather/app.py:274 china_weather/i18n.py:83
+#: china_weather/app.py:329 china_weather/i18n.py:93
 msgid "请刷新以获取实时天气"
 msgstr "請重新整理以取得即時天氣"
 
-#: china_weather/app.py:286 china_weather/i18n.py:84
+#: china_weather/app.py:341 china_weather/i18n.py:94
 msgid "七日预报暂不可用："
 msgstr "七日預報暫不可用："
 
-#: china_weather/app.py:286 china_weather/i18n.py:85
+#: china_weather/app.py:341 china_weather/i18n.py:95
 msgid "请刷新"
 msgstr "請重新整理"
 
-#: china_weather/app.py:288 china_weather/i18n.py:133
+#: china_weather/app.py:343 china_weather/i18n.py:143
 #, python-brace-format
 msgid "{status} · 获取时间：{time}（北京时间）"
 msgstr "{status} · 取得時間：{time}（北京時間）"
 
-#: china_weather/app.py:289 china_weather/i18n.py:86
+#: china_weather/app.py:344 china_weather/i18n.py:96
 msgid "数据来源：中国天气网 ↗"
 msgstr "資料來源：中國天氣網 ↗"
 
-#: china_weather/app.py:313 china_weather/i18n.py:87
+#: china_weather/app.py:369 china_weather/i18n.py:97
 msgid "七日预报"
 msgstr "七日預報"
 
-#: china_weather/app.py:315 china_weather/i18n.py:88
+#: china_weather/app.py:371 china_weather/i18n.py:98
 msgid "分时预报"
 msgstr "分時預報"
 
-#: china_weather/app.py:318 china_weather/i18n.py:89
+#: china_weather/app.py:374 china_weather/i18n.py:99
 msgid "预报发布时间："
 msgstr "預報發布時間："
 
-#: china_weather/app.py:318 china_weather/i18n.py:90
+#: china_weather/app.py:374 china_weather/i18n.py:100
 msgid "网站未提供"
 msgstr "網站未提供"
 
-#: china_weather/app.py:331 china_weather/i18n.py:91
+#: china_weather/app.py:387 china_weather/i18n.py:101
 msgid "分时段预报暂不可用："
 msgstr "分時段預報暫不可用："
 
-#: china_weather/app.py:331 china_weather/app.py:343 china_weather/i18n.py:92
+#: china_weather/app.py:387 china_weather/app.py:403 china_weather/i18n.py:102
 msgid "请刷新以获取数据"
 msgstr "請重新整理以取得資料"
 
-#: china_weather/app.py:333 china_weather/i18n.py:93
+#: china_weather/app.py:389 china_weather/i18n.py:103
 msgid "温度小时实况"
 msgstr "溫度小時實況"
 
-#: china_weather/app.py:334 china_weather/i18n.py:94
+#: china_weather/app.py:390 china_weather/i18n.py:104
 msgid "湿度小时实况"
 msgstr "濕度小時實況"
 
-#: china_weather/app.py:335 china_weather/i18n.py:95
+#: china_weather/app.py:391 china_weather/i18n.py:105
 msgid "降雨量小时实况"
 msgstr "降雨量小時實況"
 
-#: china_weather/app.py:336 china_weather/i18n.py:96
+#: china_weather/app.py:392 china_weather/i18n.py:106
 msgid "风力小时实况"
 msgstr "風力小時實況"
 
-#: china_weather/app.py:336 china_weather/i18n.py:97
+#: china_weather/app.py:392 china_weather/i18n.py:107
 msgid "级"
 msgstr "級"
 
-#: china_weather/app.py:338 china_weather/i18n.py:98
+#: china_weather/app.py:394 china_weather/i18n.py:108
 msgid "温度"
 msgstr "溫度"
 
-#: china_weather/app.py:338 china_weather/i18n.py:99
+#: china_weather/app.py:394 china_weather/i18n.py:109
 msgid "湿度"
 msgstr "濕度"
 
-#: china_weather/app.py:338 china_weather/i18n.py:100
+#: china_weather/app.py:394 china_weather/i18n.py:110
 msgid "降雨量"
 msgstr "降雨量"
 
-#: china_weather/app.py:338 china_weather/i18n.py:101
+#: china_weather/app.py:394 china_weather/i18n.py:111
 msgid "风力"
 msgstr "風力"
 
-#: china_weather/app.py:343 china_weather/i18n.py:102
+#: china_weather/app.py:403 china_weather/i18n.py:112
 msgid "小时实况暂不可用："
 msgstr "小時實況暫不可用："
 
-#: china_weather/app.py:345 china_weather/i18n.py:103
+#: china_weather/app.py:405 china_weather/i18n.py:113
 msgid "最近观测："
 msgstr "最近觀測："
 
-#: china_weather/app.py:346 china_weather/i18n.py:104
+#: china_weather/app.py:406 china_weather/i18n.py:114
 msgid "（"
 msgstr "（"
 
-#: china_weather/app.py:346 china_weather/i18n.py:105
+#: china_weather/app.py:406 china_weather/i18n.py:115
 msgid "） · 时间从早到晚"
 msgstr "） · 時間從早到晚"
 
-#: china_weather/app.py:353 china_weather/i18n.py:106
+#: china_weather/app.py:413 china_weather/i18n.py:116
 msgid "缺测"
 msgstr "缺測"
 
-#: china_weather/app.py:355 china_weather/i18n.py:107
+#: china_weather/app.py:415 china_weather/i18n.py:117
 msgid "风向暂缺"
 msgstr "風向暫缺"
 
-#: china_weather/charts.py:13 china_weather/i18n.py:112
+#: china_weather/app.py:471 china_weather/app.py:480 china_weather/i18n.py:56
+msgid "开发版"
+msgstr "開發版"
+
+#: china_weather/app.py:472 china_weather/app.py:481 china_weather/i18n.py:62
+msgid "查看中国城市的实时天气与预报。"
+msgstr "查看中國城市的即時天氣與預報。"
+
+#: china_weather/app.py:474 china_weather/app.py:483 china_weather/i18n.py:55
+msgid "网站"
+msgstr "網站"
+
+#: china_weather/charts.py:13 china_weather/i18n.py:122
 msgid "时间从左到右排列；具体数值见下方列表。断点表示缺测。"
 msgstr "時間從左到右排列；具體數值見下方列表。斷點表示缺測。"
 
-#: china_weather/i18n.py:108 china_weather/widgets.py:21
+#: china_weather/i18n.py:63
+msgid "项目主页"
+msgstr "專案首頁"
+
+#: china_weather/i18n.py:118 china_weather/widgets.py:21
 msgid "向上滚动"
 msgstr "向上捲動"
 
-#: china_weather/i18n.py:109 china_weather/widgets.py:23
+#: china_weather/i18n.py:119 china_weather/widgets.py:23
 msgid "向下滚动"
 msgstr "向下捲動"
 
-#: china_weather/i18n.py:110 china_weather/widgets.py:21
+#: china_weather/i18n.py:120 china_weather/widgets.py:21
 msgid "向左滚动"
 msgstr "向左捲動"
 
-#: china_weather/i18n.py:111 china_weather/widgets.py:23
+#: china_weather/i18n.py:121 china_weather/widgets.py:23
 msgid "向右滚动"
 msgstr "向右捲動"
 
-#: china_weather/i18n.py:113
+#: china_weather/i18n.py:123
 msgid "未找到七日预报，网站结构可能已更新"
 msgstr "未找到七日預報，網站結構可能已更新"
 
-#: china_weather/i18n.py:114
+#: china_weather/i18n.py:124
 msgid "天气页面没有可用预报"
 msgstr "天氣頁面沒有可用預報"
 
-#: china_weather/i18n.py:115
+#: china_weather/i18n.py:125
 msgid "城市搜索返回格式已变化"
 msgstr "城市搜尋回傳格式已變更"
 
-#: china_weather/i18n.py:116
+#: china_weather/i18n.py:126
 msgid "搜索服务返回了记录，但未能识别国内城市数据"
 msgstr "搜尋服務回傳了紀錄，但未能識別國內城市資料"
 
-#: china_weather/i18n.py:117
+#: china_weather/i18n.py:127
 msgid "无效的城市代码"
 msgstr "無效的城市代碼"
 
-#: china_weather/i18n.py:118
+#: china_weather/i18n.py:128
 msgid "页面没有可用的分时段预报"
 msgstr "頁面沒有可用的分時段預報"
 
-#: china_weather/i18n.py:119
+#: china_weather/i18n.py:129
 msgid "页面没有可用的小时实况"
 msgstr "頁面沒有可用的小時實況"
 
-#: china_weather/i18n.py:120
+#: china_weather/i18n.py:130
 msgid "未找到当前天气实况"
 msgstr "未找到目前天氣實況"
 
-#: china_weather/i18n.py:121
+#: china_weather/i18n.py:131
 msgid "当前天气实况格式已变化"
 msgstr "目前天氣實況格式已變更"
 
-#: china_weather/i18n.py:122
+#: china_weather/i18n.py:132
 msgid "实况返回的城市代码不匹配"
 msgstr "實況回傳的城市代碼不相符"
 
-#: china_weather/i18n.py:123
+#: china_weather/i18n.py:133
 msgid "天气现象暂缺"
 msgstr "天氣現象暫缺"
 
-#: china_weather/i18n.py:124
+#: china_weather/i18n.py:134
 msgid "风力暂缺"
 msgstr "風力暫缺"
 
-#: china_weather/i18n.py:125
+#: china_weather/i18n.py:135
 msgid "暂无数据"
 msgstr "暫無資料"
 
-#: china_weather/i18n.py:126
+#: china_weather/i18n.py:136
 msgid "优"
 msgstr "優"
 
-#: china_weather/i18n.py:127
+#: china_weather/i18n.py:137
 msgid "良"
 msgstr "良"
 
-#: china_weather/i18n.py:128
+#: china_weather/i18n.py:138
 msgid "轻度污染"
 msgstr "輕度污染"
 
-#: china_weather/i18n.py:129
+#: china_weather/i18n.py:139
 msgid "中度污染"
 msgstr "中度污染"
 
-#: china_weather/i18n.py:130
+#: china_weather/i18n.py:140
 msgid "重度污染"
 msgstr "重度污染"
 
-#: china_weather/i18n.py:131
+#: china_weather/i18n.py:141
 msgid "严重污染"
 msgstr "嚴重污染"
 
-#: china_weather/i18n.py:134
+#: china_weather/i18n.py:144
 #, python-brace-format
 msgid "页面没有提供 {name} 数据"
 msgstr "頁面沒有提供 {name} 資料"
 
-#: china_weather/i18n.py:140
+#: china_weather/i18n.py:150
 msgctxt "weather"
 msgid "晴"
 msgstr "晴"
 
-#: china_weather/i18n.py:141
+#: china_weather/i18n.py:151
 msgctxt "weather"
 msgid "多云"
 msgstr "多雲"
 
-#: china_weather/i18n.py:142
+#: china_weather/i18n.py:152
 msgctxt "weather"
 msgid "阴"
 msgstr "陰"
 
-#: china_weather/i18n.py:143
+#: china_weather/i18n.py:153
 msgctxt "weather"
 msgid "雷阵雨"
 msgstr "雷陣雨"
 
-#: china_weather/i18n.py:144
+#: china_weather/i18n.py:154
 msgctxt "weather"
 msgid "阵雨"
 msgstr "陣雨"
 
-#: china_weather/i18n.py:145
+#: china_weather/i18n.py:155
 msgctxt "weather"
 msgid "雨夹雪"
 msgstr "雨夾雪"
 
-#: china_weather/i18n.py:146
+#: china_weather/i18n.py:156
 msgctxt "weather"
 msgid "雷阵雨伴有冰雹"
 msgstr "雷陣雨伴有冰雹"
 
-#: china_weather/i18n.py:147
+#: china_weather/i18n.py:157
 msgctxt "weather"
 msgid "特大暴雨"
 msgstr "特大暴雨"
 
-#: china_weather/i18n.py:148
+#: china_weather/i18n.py:158
 msgctxt "weather"
 msgid "大暴雨"
 msgstr "大暴雨"
 
-#: china_weather/i18n.py:149
+#: china_weather/i18n.py:159
 msgctxt "weather"
 msgid "暴雨"
 msgstr "暴雨"
 
-#: china_weather/i18n.py:150
+#: china_weather/i18n.py:160
 msgctxt "weather"
 msgid "大雨"
 msgstr "大雨"
 
-#: china_weather/i18n.py:151
+#: china_weather/i18n.py:161
 msgctxt "weather"
 msgid "中雨"
 msgstr "中雨"
 
-#: china_weather/i18n.py:152
+#: china_weather/i18n.py:162
 msgctxt "weather"
 msgid "小雨"
 msgstr "小雨"
 
-#: china_weather/i18n.py:153
+#: china_weather/i18n.py:163
 msgctxt "weather"
 msgid "暴雪"
 msgstr "暴雪"
 
-#: china_weather/i18n.py:154
+#: china_weather/i18n.py:164
 msgctxt "weather"
 msgid "大雪"
 msgstr "大雪"
 
-#: china_weather/i18n.py:155
+#: china_weather/i18n.py:165
 msgctxt "weather"
 msgid "中雪"
 msgstr "中雪"
 
-#: china_weather/i18n.py:156
+#: china_weather/i18n.py:166
 msgctxt "weather"
 msgid "小雪"
 msgstr "小雪"
 
-#: china_weather/i18n.py:157
+#: china_weather/i18n.py:167
 msgctxt "weather"
 msgid "阵雪"
 msgstr "陣雪"
 
-#: china_weather/i18n.py:158
+#: china_weather/i18n.py:168
 msgctxt "weather"
 msgid "浮尘"
 msgstr "浮塵"
 
-#: china_weather/i18n.py:159
+#: china_weather/i18n.py:169
 msgctxt "weather"
 msgid "扬沙"
 msgstr "揚沙"
 
-#: china_weather/i18n.py:160
+#: china_weather/i18n.py:170
 msgctxt "weather"
 msgid "强沙尘暴"
 msgstr "強沙塵暴"
 
-#: china_weather/i18n.py:161
+#: china_weather/i18n.py:171
 msgctxt "weather"
 msgid "沙尘暴"
 msgstr "沙塵暴"
 
-#: china_weather/i18n.py:162
+#: china_weather/i18n.py:172
 msgctxt "weather"
 msgid "雾"
 msgstr "霧"
 
-#: china_weather/i18n.py:163
+#: china_weather/i18n.py:173
 msgctxt "weather"
 msgid "霾"
 msgstr "霾"
 
-#: china_weather/i18n.py:164
+#: china_weather/i18n.py:174
 msgctxt "weather"
 msgid "东北风"
 msgstr "東北風"
 
-#: china_weather/i18n.py:165
+#: china_weather/i18n.py:175
 msgctxt "weather"
 msgid "东南风"
 msgstr "東南風"
 
-#: china_weather/i18n.py:166
+#: china_weather/i18n.py:176
 msgctxt "weather"
 msgid "西北风"
 msgstr "西北風"
 
-#: china_weather/i18n.py:167
+#: china_weather/i18n.py:177
 msgctxt "weather"
 msgid "西南风"
 msgstr "西南風"
 
-#: china_weather/i18n.py:168
+#: china_weather/i18n.py:178
 msgctxt "weather"
 msgid "东风"
 msgstr "東風"
 
-#: china_weather/i18n.py:169
+#: china_weather/i18n.py:179
 msgctxt "weather"
 msgid "南风"
 msgstr "南風"
 
-#: china_weather/i18n.py:170
+#: china_weather/i18n.py:180
 msgctxt "weather"
 msgid "西风"
 msgstr "西風"
 
-#: china_weather/i18n.py:171
+#: china_weather/i18n.py:181
 msgctxt "weather"
 msgid "北风"
 msgstr "北風"
 
-#: china_weather/i18n.py:172
+#: china_weather/i18n.py:182
 msgctxt "weather"
 msgid "无持续风向"
 msgstr "無持續風向"
 
-#: china_weather/i18n.py:173
+#: china_weather/i18n.py:183
 msgctxt "weather"
 msgid "微风"
 msgstr "微風"
 
-#: china_weather/i18n.py:174
+#: china_weather/i18n.py:184
 msgctxt "weather"
 msgid "今天"
 msgstr "今天"
 
-#: china_weather/i18n.py:175
+#: china_weather/i18n.py:185
 msgctxt "weather"
 msgid "明天"
 msgstr "明天"
 
-#: china_weather/i18n.py:176
+#: china_weather/i18n.py:186
 msgctxt "weather"
 msgid "后天"
 msgstr "後天"
 
-#: china_weather/i18n.py:177
+#: china_weather/i18n.py:187
 msgctxt "weather"
 msgid "星期"
 msgstr "星期"
 
-#: china_weather/i18n.py:178
+#: china_weather/i18n.py:188
 msgctxt "weather"
 msgid "周一"
 msgstr "週一"
 
-#: china_weather/i18n.py:179
+#: china_weather/i18n.py:189
 msgctxt "weather"
 msgid "周二"
 msgstr "週二"
 
-#: china_weather/i18n.py:180
+#: china_weather/i18n.py:190
 msgctxt "weather"
 msgid "周三"
 msgstr "週三"
 
-#: china_weather/i18n.py:181
+#: china_weather/i18n.py:191
 msgctxt "weather"
 msgid "周四"
 msgstr "週四"
 
-#: china_weather/i18n.py:182
+#: china_weather/i18n.py:192
 msgctxt "weather"
 msgid "周五"
 msgstr "週五"
 
-#: china_weather/i18n.py:183
+#: china_weather/i18n.py:193
 msgctxt "weather"
 msgid "周六"
 msgstr "週六"
 
-#: china_weather/i18n.py:184
+#: china_weather/i18n.py:194
 msgctxt "weather"
 msgid "周日"
 msgstr "週日"
 
-#: china_weather/i18n.py:185
+#: china_weather/i18n.py:195
 msgctxt "weather"
 msgid "转"
 msgstr "轉"
 
-#: china_weather/i18n.py:186
+#: china_weather/i18n.py:196
 msgctxt "weather"
 msgid "到"
 msgstr "到"
 
-#: china_weather/i18n.py:187
+#: china_weather/i18n.py:197
 msgctxt "weather"
 msgid "级"
 msgstr "級"
 
-#: china_weather/i18n.py:188
+#: china_weather/i18n.py:198
 msgctxt "weather"
 msgid "日"
 msgstr "日"
 
-#: china_weather/i18n.py:189
+#: china_weather/i18n.py:199
 msgctxt "weather"
 msgid "小于"
 msgstr "小於"
