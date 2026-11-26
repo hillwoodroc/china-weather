@@ -405,7 +405,8 @@ class Window(Adw.ApplicationWindow):
             page.append(label(_('最近观测：') + observations.get('updated', '—') + _(' · 北京时间'), 'dim-label'))
             page.append(label(title + _('（') + unit + _('） · 时间从早到晚'), 'heading'))
             if any(point.get(field) is not None for point in points):
-                page.append(TrendChart(points, field, unit))
+                chart = TrendChart(points, field, unit)
+                page.append(ArrowScroller(chart) if field in ('temperature', 'humidity') else chart)
             cards = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
             for point in points:
                 card = self.weather_card(point['time'])
