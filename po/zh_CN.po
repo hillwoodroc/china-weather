@@ -650,3 +650,27 @@ msgstr "定位失败："
 
 msgid "无法确定所在城市，请手动搜索"
 msgstr "无法确定所在城市，请手动搜索"
+
+msgid "使用浏览器 User-Agent"
+msgstr "使用浏览器 User-Agent"
+
+msgid "浏览器伪装"
+msgstr "浏览器伪装"
+
+msgid "选择浏览器预设，或输入自定义 User-Agent。"
+msgstr "选择浏览器预设，或输入自定义 User-Agent。"
+
+msgid "应用默认标识"
+msgstr "应用默认标识"
+
+msgid "自定义"
+msgstr "自定义"
+
+msgid "取消"
+msgstr "取消"
+
+msgid "保存"
+msgstr "保存"
+
+msgid "请输入有效的 User-Agent（仅限可打印 ASCII 字符）。"
+msgstr "请输入有效的 User-Agent（仅限可打印 ASCII 字符）。"

@@ -76,6 +76,9 @@ class Window(Adw.ApplicationWindow):
         units.append(_('摄氏度 (°C)'), 'app.temperature-unit::celsius')
         units.append(_('华氏度 (°F)'), 'app.temperature-unit::fahrenheit')
         menu.append_submenu(_('温度单位'), units)
+        network = Gio.Menu()
+        network.append(_('浏览器伪装'), 'app.user-agent')
+        menu.append_section(None, network)
         about = Gio.Menu()
         about.append(_('关于中国天气'), 'app.about')
         menu.append_section(None, about)
@@ -494,9 +497,76 @@ class Application(Adw.Application):
                                                    GLib.Variant('s', self.temperature_unit))
         unit_action.connect('change-state', self.change_temperature_unit)
         self.add_action(unit_action)
+        user_agent_action = Gio.SimpleAction.new('user-agent', None)
+        user_agent_action.connect('activate', self.show_user_agent_settings)
+        self.add_action(user_agent_action)
         about_action = Gio.SimpleAction.new('about', None)
         about_action.connect('activate', self.show_about)
         self.add_action(about_action)
+
+    def show_user_agent_settings(self, *args):
+        dialog = Gtk.Window(title=_('浏览器伪装'), transient_for=self.get_active_window(),
+                            modal=True, default_width=560, resizable=True)
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        for side in ('top', 'bottom', 'start', 'end'):
+            getattr(box, 'set_margin_' + side)(20)
+        dialog.set_child(box)
+        box.append(label(_('选择浏览器预设，或输入自定义 User-Agent。')))
+        codes = list(provider.USER_AGENTS) + ['custom']
+        names = ['Chrome 158 (Linux)', 'Firefox 153 ESR (Linux)', 'Edge 158 (Windows)', 'Safari 27.2 (macOS)',
+                 _('应用默认标识'), _('自定义')]
+        selector = Gtk.DropDown.new_from_strings(names)
+        settings = storage.load(storage.SETTINGS, {})
+        preset = provider.user_agent_preset(settings)
+        selector.set_selected(codes.index(preset))
+        box.append(selector)
+        entry = Gtk.Entry(hexpand=True)
+        entry.set_max_length(1024)
+        entry.set_text(provider.user_agent())
+        entry.set_tooltip_text('User-Agent')
+        box.append(entry)
+        error = label('', 'error')
+        box.append(error)
+        controls = Gtk.Box(spacing=12, halign=Gtk.Align.END)
+        cancel = Gtk.Button(label=_('取消'))
+        save = Gtk.Button(label=_('保存'))
+        save.add_css_class('suggested-action')
+        controls.append(cancel)
+        controls.append(save)
+        box.append(controls)
+        state = {'updating': False, 'custom': settings.get('custom_user_agent', '') if isinstance(settings, dict) else ''}
+
+        def changed(entry):
+            if not state['updating']:
+                state['custom'] = entry.get_text()
+                state['updating'] = True
+                selector.set_selected(codes.index('custom'))
+                state['updating'] = False
+            error.set_text('')
+            save.set_sensitive(provider.valid_user_agent(entry.get_text()))
+
+        def selected(selector, param):
+            if state['updating']:
+                return
+            code = codes[selector.get_selected()]
+            state['updating'] = True
+            entry.set_text(provider.USER_AGENTS.get(code, state['custom']))
+            state['updating'] = False
+
+        def apply(button):
+            try:
+                provider.save_user_agent(codes[selector.get_selected()], entry.get_text())
+            except ValueError:
+                error.set_text(_('请输入有效的 User-Agent（仅限可打印 ASCII 字符）。'))
+                return
+            dialog.close()
+
+        entry.connect('changed', changed)
+        selector.connect('notify::selected', selected)
+        cancel.connect('clicked', lambda button: dialog.close())
+        save.connect('clicked', apply)
+        save.set_sensitive(provider.valid_user_agent(entry.get_text()))
+        dialog.present()
 
     def change_temperature_unit(self, action, value):
         unit = value.get_string()

@@ -44,3 +44,5 @@ make install PREFIX="$HOME/.local"
 ## Automatic location
 
 Open the location selector and choose **Detect Location (IP)** to find and select your city. Enable **Detect location at startup** to repeat this on launch (disabled by default). The app uses weather.com.cn’s HTTPS GeoIP service without GPS or extra dependencies. VPNs and network routing may change the detected city; manual search is always available. Failed detection preserves the current city.
+
+The main menu's **Browser Impersonation** offers Chrome 158 (Linux), Firefox 153 ESR (Linux), Edge 158 (Windows), Safari 27.2 (macOS), the application identity and a custom value. Selecting a preset fills in the full header; editing it selects Custom. Save applies the value to subsequent requests immediately. Existing browser-identity preferences are preserved.

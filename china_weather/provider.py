@@ -5,6 +5,59 @@ import json
 import re
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from . import storage, __version__
+
+# Preset versions checked against vendor releases on 2026-11-26.
+# Firefox ESR 153.8.0 uses rv:153.0 and Firefox/153.0 in its User-Agent.
+# Chromium desktop User-Agents use a reduced MAJOR.0.0.0 version.
+BROWSER_USER_AGENT = (
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
+    '(KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36')
+
+
+USER_AGENTS = {
+    'chrome-linux': BROWSER_USER_AGENT,
+    'firefox-linux': 'Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0',
+    'edge-windows': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0',
+    'safari-macos': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15',
+    'application': f'ChinaWeather/{__version__}',
+}
+
+
+def valid_user_agent(value):
+    return isinstance(value, str) and 0 < len(value.strip()) <= 1024 and all(32 <= ord(c) < 127 for c in value)
+
+
+def user_agent_preset(settings):
+    if not isinstance(settings, dict):
+        return 'chrome-linux'
+    preset = settings.get('user_agent_preset')
+    if preset in USER_AGENTS or preset == 'custom':
+        return preset
+    return 'application' if settings.get('browser_user_agent') is False else 'chrome-linux'
+
+
+def user_agent():
+    settings = storage.load(storage.SETTINGS, {})
+    preset = user_agent_preset(settings)
+    if preset == 'custom':
+        value = settings.get('custom_user_agent', '')
+        return value.strip() if valid_user_agent(value) else BROWSER_USER_AGENT
+    return USER_AGENTS[preset]
+
+
+def save_user_agent(preset, custom=''):
+    if preset not in USER_AGENTS and preset != 'custom':
+        raise ValueError('Invalid User-Agent preset')
+    if preset == 'custom' and not valid_user_agent(custom):
+        raise ValueError('Invalid custom User-Agent')
+    settings = storage.load(storage.SETTINGS, {})
+    if not isinstance(settings, dict):
+        settings = {}
+    settings['user_agent_preset'] = preset
+    if preset == 'custom':
+        settings['custom_user_agent'] = custom.strip()
+    storage.save(storage.SETTINGS, settings)
 
 
 @dataclass(frozen=True)
@@ -119,7 +172,7 @@ def parse_search(payload):
 
 
 def fetch(url):
-    req = Request(url, headers={'User-Agent': 'Mozilla/5.0 (ChinaWeather desktop)',
+    req = Request(url, headers={'User-Agent': user_agent(),
                                'Referer': 'https://www.weather.com.cn/'})
     with urlopen(req, timeout=15) as response:
         return response.read(2_000_000).decode('utf-8-sig')

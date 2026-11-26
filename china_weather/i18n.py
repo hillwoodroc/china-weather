@@ -52,6 +52,15 @@ def weather_message(context, message):
 
 
 MESSAGES = (
+    N_('浏览器伪装'),
+    N_('选择浏览器预设，或输入自定义 User-Agent。'),
+    N_('应用默认标识'),
+    N_('自定义'),
+    N_('取消'),
+    N_('保存'),
+    N_('请输入有效的 User-Agent（仅限可打印 ASCII 字符）。'),
+
+    N_('使用浏览器 User-Agent'),
     N_('自动定位（IP）'),
     N_('根据网络出口确定城市；VPN 可能影响结果。'),
     N_('启动时自动定位'),

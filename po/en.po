@@ -654,3 +654,27 @@ msgstr "Location detection failed: "
 
 msgid "无法确定所在城市，请手动搜索"
 msgstr "Could not determine your city. Please search manually."
+
+msgid "使用浏览器 User-Agent"
+msgstr "Use browser User-Agent"
+
+msgid "浏览器伪装"
+msgstr "Browser Impersonation"
+
+msgid "选择浏览器预设，或输入自定义 User-Agent。"
+msgstr "Choose a browser preset or enter a custom User-Agent."
+
+msgid "应用默认标识"
+msgstr "Application identity"
+
+msgid "自定义"
+msgstr "Custom"
+
+msgid "取消"
+msgstr "Cancel"
+
+msgid "保存"
+msgstr "Save"
+
+msgid "请输入有效的 User-Agent（仅限可打印 ASCII 字符）。"
+msgstr "Enter a valid User-Agent using printable ASCII characters only."
