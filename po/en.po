@@ -636,3 +636,21 @@ msgstr " day"
 msgctxt "weather"
 msgid "小于"
 msgstr "less than "
+
+msgid "自动定位（IP）"
+msgstr "Detect Location (IP)"
+
+msgid "根据网络出口确定城市；VPN 可能影响结果。"
+msgstr "Find your city using your network address; a VPN may affect the result."
+
+msgid "启动时自动定位"
+msgstr "Detect location at startup"
+
+msgid "正在定位…"
+msgstr "Detecting location…"
+
+msgid "定位失败："
+msgstr "Location detection failed: "
+
+msgid "无法确定所在城市，请手动搜索"
+msgstr "Could not determine your city. Please search manually."

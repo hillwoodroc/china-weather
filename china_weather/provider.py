@@ -256,3 +256,25 @@ def aqi_description(value):
         if value <= ceiling:
             return text
     return '严重污染'
+
+
+def parse_location(payload):
+    """Decode the site's GeoIP assignments without executing remote JavaScript."""
+    values = {}
+    for key in ('id', 'addr'):
+        match = re.search(r'\bvar\s+' + key + r'\s*=\s*("(?:[^"\\]|\\.)*")\s*;', payload)
+        if match:
+            values[key] = json.loads(match.group(1))
+    code = values.get('id', '')
+    if not re.fullmatch(r'101\d{6}', code):
+        raise ValueError('无法确定所在城市，请手动搜索')
+    parts = list(dict.fromkeys(part.strip() for part in values.get('addr', '').split(',') if part.strip()))
+    if not parts:
+        raise ValueError('无法确定所在城市，请手动搜索')
+    return City(code, parts[-1], ' · '.join(parts[:-1]))
+
+
+def locate():
+    import time
+    # Cache busting avoids a cached result after changing networks.
+    return parse_location(fetch('https://wgeo.weather.com.cn/ip/?' + urlencode({'_': int(time.time() * 1000)})))

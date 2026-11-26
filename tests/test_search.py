@@ -12,7 +12,7 @@ class SearchTests(unittest.TestCase):
         self.window = SimpleNamespace(
             search_serial=0, search_timer=None, cities=[],
             search=Mock(), search_status=Mock(), results=Mock(),
-            show_cities=Mock(), async_call=Mock())
+            show_cities=Mock(), async_call=Mock(), cancel_location=Mock())
         self.window.results.get_first_child.return_value = None
 
     def search(self, query):

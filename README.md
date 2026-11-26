@@ -40,3 +40,7 @@ Favorites are stored in `$XDG_CONFIG_HOME/china-weather/cities.json`, and cached
 ```sh
 make install PREFIX="$HOME/.local"
 ```
+
+## Automatic location
+
+Open the location selector and choose **Detect Location (IP)** to find and select your city. Enable **Detect location at startup** to repeat this on launch (disabled by default). The app uses weather.com.cn’s HTTPS GeoIP service without GPS or extra dependencies. VPNs and network routing may change the detected city; manual search is always available. Failed detection preserves the current city.

@@ -35,7 +35,7 @@ class Window(Adw.ApplicationWindow):
         super().__init__(application=app, title=_('中国天气'), default_width=940, default_height=720)
         self.city = None
         self.rendered_weather = None
-        self.serial = self.search_serial = 0
+        self.serial = self.search_serial = self.location_serial = 0
         self.search_timer = None
         self.cities = []
         for item in storage.load(storage.CONFIG, []):
@@ -92,6 +92,15 @@ class Window(Adw.ApplicationWindow):
         self.search = Gtk.SearchEntry(placeholder_text=_('搜索城市 / 拼音'))
         self.search.connect('search-changed', self.search_changed)
         location_box.append(self.search)
+        self.locate_button = Gtk.Button(label=_('自动定位（IP）'))
+        self.locate_button.set_tooltip_text(_('根据网络出口确定城市；VPN 可能影响结果。'))
+        self.locate_button.connect('clicked', self.locate_city)
+        location_box.append(self.locate_button)
+        self.auto_location = Gtk.CheckButton(label=_('启动时自动定位'))
+        location_settings = storage.load(storage.SETTINGS, {})
+        self.auto_location.set_active(isinstance(location_settings, dict) and location_settings.get('auto_location', False) is True)
+        self.auto_location.connect('toggled', self.auto_location_changed)
+        location_box.append(self.auto_location)
         self.location_popover.connect('notify::visible', self.locations_visible)
         self.search_status = label(_('收藏城市'), 'heading')
         location_box.append(self.search_status)
@@ -122,6 +131,45 @@ class Window(Adw.ApplicationWindow):
             self.body.append(choose)
         self.timer = GLib.timeout_add_seconds(1800, self.auto_refresh)
         self.connect('close-request', self.closed)
+        if self.auto_location.get_active() and selected_city is None:
+            self.locate_city()
+
+    def auto_location_changed(self, button):
+        settings = storage.load(storage.SETTINGS, {})
+        if not isinstance(settings, dict):
+            settings = {}
+        settings['auto_location'] = button.get_active()
+        storage.save(storage.SETTINGS, settings)
+
+    def cancel_location(self):
+        self.location_serial += 1
+        self.locate_button.set_sensitive(True)
+        self.locate_button.set_label(_('自动定位（IP）'))
+
+    def locate_city(self, *args):
+        self.search_serial += 1
+        if self.search_timer:
+            GLib.source_remove(self.search_timer)
+            self.search_timer = None
+        self.cancel_location()
+        generation = self.location_serial
+        self.locate_button.set_sensitive(False)
+        self.locate_button.set_label(_('正在定位…'))
+        self.search_status.set_text(_('正在定位…'))
+
+        def done(city, error):
+            if generation != self.location_serial:
+                return
+            self.cancel_location()
+            if error:
+                self.search_status.set_text(_('定位失败：') + error)
+                self.location_popover.popup()
+                return
+            self.search.set_text('')
+            self.search_status.set_text(_('收藏城市'))
+            self.add_city(city)
+
+        self.async_call(provider.locate, done)
 
     def locations_visible(self, popover, *_):
         if popover.get_visible():
@@ -130,6 +178,7 @@ class Window(Adw.ApplicationWindow):
                 self.show_cities(self.cities)
 
     def closed(self, *_):
+        self.cancel_location()
         GLib.source_remove(self.timer)
         if self.search_timer:
             GLib.source_remove(self.search_timer)
@@ -200,6 +249,7 @@ class Window(Adw.ApplicationWindow):
             self.show_cities(self.cities)
 
     def search_changed(self, *args):
+        self.cancel_location()
         self.search_serial += 1
         generation = self.search_serial
         if self.search_timer:
@@ -244,6 +294,7 @@ class Window(Adw.ApplicationWindow):
         self.star.set_icon_name('starred-symbolic' if self.city in self.cities else 'non-starred-symbolic')
 
     def select(self, city):
+        self.cancel_location()
         self.location_popover.popdown()
         self.window_title.set_title(city.name)
         self.window_title.set_subtitle(_('中国天气'))

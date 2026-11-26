@@ -632,3 +632,21 @@ msgstr "日"
 msgctxt "weather"
 msgid "小于"
 msgstr "小於"
+
+msgid "自动定位（IP）"
+msgstr "自動定位（IP）"
+
+msgid "根据网络出口确定城市；VPN 可能影响结果。"
+msgstr "根據網路出口確定城市；VPN 可能影響結果。"
+
+msgid "启动时自动定位"
+msgstr "啟動時自動定位"
+
+msgid "正在定位…"
+msgstr "正在定位…"
+
+msgid "定位失败："
+msgstr "定位失敗："
+
+msgid "无法确定所在城市，请手动搜索"
+msgstr "無法確定所在城市，請手動搜尋"
